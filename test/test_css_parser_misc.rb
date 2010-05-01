@@ -36,16 +36,17 @@ class CssParserTests < Test::Unit::TestCase
       .three {color: red;} */
       .three {color: green;}
       /**/
-      .four {color: green;}
+      .four a b{color: green;}
       /*********/
-      .five {color: green;}
+      .five a {color: green;}
       /* a comment **/
       .six {color: green;}
     EOT
 
     @cp.add_block!(css)
-    @cp.each_selector do |sel|
-      assert_equal 'color: green;', sel.declarations
+    @cp.each_selector_sorted do |sel|
+      puts sel.inspect
+      assert_equal 'color: green;', sel.declarations_to_s
     end
   end
 
@@ -78,7 +79,7 @@ class CssParserTests < Test::Unit::TestCase
     @cp.add_block!(css)
 
     @cp.each_selector do |sel|
-      assert_equal 'color: red;', sel.declarations
+      assert_equal 'color: red;', sel.declarations_to_s
     end
   end
 

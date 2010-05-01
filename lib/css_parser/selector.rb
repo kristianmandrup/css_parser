@@ -19,7 +19,7 @@ module CssParser
 
     
     def to_s
-      "#{selector} \n/* specificity: #{specificity} */\n {\n#{declarations}\n} \n"
+      "#{selector}\n{\n#{declarations}\n} \n"
     end
 
   end

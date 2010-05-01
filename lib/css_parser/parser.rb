@@ -184,6 +184,20 @@ module CssParser
       end
     end
 
+    # Iterate through CSS selectors.
+    #
+    # +media_types+ can be a symbol or an array of symbols.
+    # See RuleSet#each_selector for +options+.
+    def each_selector_sorted(media_types = :all, options = {}) # :yields: selectors, declarations, specificity
+      sels = []
+      each_selector(media_types, options) do |sel|
+          sels << sel
+      end
+      sorted_sels = sels.sort_by(&:specificity)
+      sorted_sels.each{|s| yield s}      
+    end
+
+
     # Output all CSS rules as a single stylesheet.
     def to_s(media_types = :all)
       out = ''

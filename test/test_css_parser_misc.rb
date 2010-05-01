@@ -44,10 +44,16 @@ class CssParserTests < Test::Unit::TestCase
     EOT
 
     @cp.add_block!(css)
-    @cp.each_selector_sorted do |sel|
+    @cp.each_selector_sorted(:asc) do |sel|
       puts sel.inspect
       assert_equal 'color: green;', sel.declarations_to_s
     end
+
+    @cp.each_selector_sorted(:desc) do |sel|
+      puts sel.inspect
+      assert_equal 'color: green;', sel.declarations_to_s
+    end
+
   end
 
   def test_parsing_blocks

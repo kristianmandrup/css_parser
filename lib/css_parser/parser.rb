@@ -193,7 +193,8 @@ module CssParser
       each_selector(media_types, options) do |sel|
           sels << sel
       end
-      sorted_sels = sels.sort_by(&:specificity)
+      sorted_sels = sels.sort_by(&:specificity).reverse
+      if options[:asc] sorted_sels.reverse!
       sorted_sels.each{|s| yield s}      
     end
 

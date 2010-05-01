@@ -1,5 +1,10 @@
 === Ruby CSS Parser CHANGELOG
 
+==== Version 1.1.1
+ * Encapsulated selector into its own class
+ * Gem now uses Jewler (new Rakefile.rb created)
+ * Ensured all tests work with new selector iteration (each_selector) strategy which now returns a Selector instance
+
 ==== Version 1.1.0
  * Added support for local @import
  * Better remote @import handling

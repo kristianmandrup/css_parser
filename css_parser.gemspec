@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{css_parser}
-  s.version = "1.1.0"
+  s.version = "1.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -21,11 +21,14 @@ Gem::Specification.new do |s|
     "CHANGELOG",
     "LICENSE",
     "README.rdoc",
+    "VERSION",
+    "_rakefile.rb",
     "css_parser.gemspec",
     "lib/css_parser.rb",
     "lib/css_parser/parser.rb",
     "lib/css_parser/regexps.rb",
     "lib/css_parser/rule_set.rb",
+    "lib/css_parser/selector.rb",
     "rakefile.rb",
     "test/fixtures/import-circular-reference.css",
     "test/fixtures/import-with-media-types.css",

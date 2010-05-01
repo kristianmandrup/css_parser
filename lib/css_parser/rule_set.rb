@@ -1,4 +1,7 @@
 require 'css_parser/selector'
+require 'css_parser/selectors'
+require 'css_parser/declaration'                             
+require 'css_parser/declarations' 
 
 module CssParser
   class RuleSet
@@ -89,7 +92,7 @@ module CssParser
       decs = @declarations.sort { |a,b| a[1][:order].nil? || b[1][:order].nil? ? 0 : a[1][:order] <=> b[1][:order] }
       decs.each do |property, data|
         value = data[:value]
-        yield property.downcase.strip, value.strip, data[:is_important]
+        yield Declaration.new property.downcase.strip, value.strip, data[:is_important]
       end
     end
 
@@ -100,8 +103,8 @@ module CssParser
     def declarations_to_s(options = {})
      options = {:force_important => false}.merge(options)
      str = ''
-     importance = options[:force_important] ? ' !important' : ''
-     each_declaration { |prop, val| str += "#{prop}: #{val}#{importance}; " }
+     importance = options[:force_important] # ? ' !important' : ''
+     each_declaration { |decl| str += "#{decl.to_s(importance)}" }
      str.gsub(/^[\s]+|[\n\r\f\t]*|[\s]+$/mx, '').strip
     end
 

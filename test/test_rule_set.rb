@@ -53,7 +53,10 @@ class RuleSetTests < Test::Unit::TestCase
     
     actual = Set.new
     rs = RuleSet.new(nil, 'color: #fff; Background: white none no-repeat !important; margin: 1px -0.25em;')
-    rs.each_declaration do |prop, val, imp|
+    rs.each_declaration do |decl|
+      prop = decl.property
+      val = decl.value
+      imp = decl.important
       actual << {:property => prop, :value => val, :is_important => imp}
     end
     
@@ -65,7 +68,8 @@ class RuleSetTests < Test::Unit::TestCase
     rs           = RuleSet.new(nil, css_fragment)
     expected     = %w(margin padding margin-bottom)
     actual       = []
-    rs.each_declaration { |prop, val, imp| actual << prop }
+#    rs.each_declaration { |prop, val, imp| actual << prop }
+    rs.each_declaration { |decl| actual << decl.property }    
     assert_equal(expected, actual)
   end
 

@@ -170,8 +170,9 @@ protected
     ruleset.expand_shorthand!
 
     collected = {}
-    ruleset.each_declaration do |prop, val, imp|
-      collected[prop.to_s] = val.to_s
+    # ruleset.each_declaration do |prop, val, imp|
+    ruleset.each_declaration do |decl|
+      collected[decl.property.to_s] = decl.value.to_s
     end
     collected  
   end

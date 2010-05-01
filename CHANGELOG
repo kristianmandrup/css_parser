@@ -1,5 +1,9 @@
 === Ruby CSS Parser CHANGELOG
 
+==== Version 1.1.2
+TODO
+Use enumerables Declarations and Selectors instead of simple string arrays for much greater power and flexibility! 
+
 ==== Version 1.1.1
  * Encapsulated selector into its own class
  * Encapsulated declaration into its own class

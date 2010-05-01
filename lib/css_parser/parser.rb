@@ -194,7 +194,7 @@ module CssParser
           sels << sel
       end
       sorted_sels = sels.sort_by(&:specificity).reverse
-      if options[:asc] sorted_sels.reverse!
+      sorted_sels.reverse! if options[:asc] 
       sorted_sels.each{|s| yield s}      
     end
 

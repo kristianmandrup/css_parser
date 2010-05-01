@@ -63,6 +63,7 @@ Gem::Specification.new do |s|
     "test/test_css_parser_regexps.rb",
     "test/test_helper.rb",
     "test/test_merging.rb",
+    "test/test_parsing.rb",
     "test/test_rule_set.rb",
     "test/test_rule_set_creating_shorthand.rb",
     "test/test_rule_set_expanding_shorthand.rb"

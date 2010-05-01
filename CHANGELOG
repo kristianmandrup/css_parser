@@ -2,9 +2,10 @@
 
 ==== Version 1.1.1
  * Encapsulated selector into its own class
+ * Encapsulated declaration into its own class
  * Gem now uses Jewler (new Rakefile.rb created)
- * Ensured all tests work with new selector iteration (each_selector) strategy which now returns a Selector instance
-
+ * All tests work with new selector and declaration iteration strategies which now returns a Selector and Declaration instance
+ 
 ==== Version 1.1.0
  * Added support for local @import
  * Better remote @import handling

@@ -189,12 +189,13 @@ module CssParser
     # +media_types+ can be a symbol or an array of symbols.
     # See RuleSet#each_selector for +options+.
     def each_selector_sorted(media_types = :all, options = {}) # :yields: selectors, declarations, specificity
+      order = options.delete(:order) || :desc
       sels = []
       each_selector(media_types, options) do |sel|
           sels << sel
       end
       sorted_sels = sels.sort_by(&:specificity).reverse
-      sorted_sels.reverse! if options[:asc] 
+      sorted_sels.reverse! if order == :asc
       sorted_sels.each{|s| yield s}      
     end
 

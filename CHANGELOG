@@ -1,7 +1,9 @@
 === Ruby CSS Parser CHANGELOG
 
 ==== Version 1.1.2
- * Added declarations API to selector
+ * Extracted declarations API from RuleSet
+ * Added declarations API to both RuleSet and Selector classes
+ * Tests still work!
 
 TODO
 Use enumerables Declarations and Selectors instead of simple string arrays for much greater power and flexibility! 

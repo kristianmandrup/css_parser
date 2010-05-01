@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "css_parser.gemspec",
     "lib/css_parser.rb",
     "lib/css_parser/declaration.rb",
+    "lib/css_parser/declaration_api.rb",
     "lib/css_parser/declarations.rb",
     "lib/css_parser/parser.rb",
     "lib/css_parser/regexps.rb",

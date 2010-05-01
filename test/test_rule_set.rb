@@ -38,7 +38,7 @@ class RuleSetTests < Test::Unit::TestCase
     actual = []
     rs = RuleSet.new('#content p, a', 'color: #fff;')
     rs.each_selector do |sel|
-      actual << {:selector => sel.selector, :declarations => sel.declarations, :specificity => sel.specificity}
+      actual << {:selector => sel.selector, :declarations => sel.declarations_to_s, :specificity => sel.specificity}
     end
     
     assert_equal(expected, actual)

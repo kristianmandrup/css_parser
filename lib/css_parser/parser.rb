@@ -171,6 +171,23 @@ module CssParser
       end
     end
 
+    # go through all selector of the parser in order of specificity
+    # parse declarations for each selector
+    def do_selector_declarations!
+      each_selector_sorted(:all, :order => :asc) do |sel|        
+        sel.declarations.each do |dec|
+          dec.gsub! /"/, ''
+          dec.gsub! /\[/, ''
+          dec.gsub! /\]/, ''
+
+          decs = dec.split(',')
+          decs.each do |d| 
+            parse_declarations!(d)              
+          end      
+        end
+      end             
+    end
+
     # Iterate through CSS selectors.
     #
     # +media_types+ can be a symbol or an array of symbols.

@@ -69,6 +69,7 @@ module CssParser
           add_declaration!(property, value)          
         end
       end
+      
     end  
   end
 end

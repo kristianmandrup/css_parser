@@ -72,8 +72,8 @@ module CssParser
     # Returns an array of declarations.
     def find_by_selector(selector, media_types = :all)
       out = []
-      each_selector(media_types) do |sel, dec, spec|
-        out << dec if sel.strip == selector.strip
+      each_selector(media_types) do |sel|
+        out << sel.declarations if sel.selector.strip == selector.strip
       end
       out
     end
@@ -176,8 +176,8 @@ module CssParser
     def each_selector(media_types = :all, options = {}) # :yields: selectors, declarations, specificity
       each_rule_set(media_types) do |rule_set|
         #puts rule_set
-        rule_set.each_selector(options) do |selectors, declarations, specificity|
-          yield selectors, declarations, specificity
+        rule_set.each_selector(options) do |selector|
+          yield selector
         end
       end
     end
@@ -185,8 +185,8 @@ module CssParser
     # Output all CSS rules as a single stylesheet.
     def to_s(media_types = :all)
       out = ''
-      each_selector(media_types) do |selectors, declarations, specificity|
-        out << "#{selectors} {\n#{declarations}\n}\n"
+      each_selector(media_types) do |selector|
+        out << selector.to_s
       end
       out
     end

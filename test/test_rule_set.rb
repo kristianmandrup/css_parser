@@ -37,8 +37,8 @@ class RuleSetTests < Test::Unit::TestCase
     
     actual = []
     rs = RuleSet.new('#content p, a', 'color: #fff;')
-    rs.each_selector do |sel, decs, spec|
-      actual << {:selector => sel, :declarations => decs, :specificity => spec}
+    rs.each_selector do |sel|
+      actual << {:selector => sel.selector, :declarations => sel.declarations, :specificity => sel.specificity}
     end
     
     assert_equal(expected, actual)
@@ -77,8 +77,8 @@ class RuleSetTests < Test::Unit::TestCase
 
   def test_overriding_specificity
     rs = RuleSet.new('#content p, a', 'color: white', 1000)
-    rs.each_selector do |sel, decs, spec|
-      assert_equal 1000, spec
+    rs.each_selector do |sel|
+      assert_equal 1000, sel.specificity
     end
   end
 end

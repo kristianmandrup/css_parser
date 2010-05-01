@@ -8,9 +8,9 @@ require File.dirname(__FILE__) + '/test_helper'
 class CssParserRegexpTests < Test::Unit::TestCase
   def test_strings
     # complete matches
-    ['"abcd"', '" A sd sédrcv \'dsf\' asd rfg asd"', '"A\ d??ef 123!"',
+    ['"abcd"', '" A sd sÃˆdrcv \'dsf\' asd rfg asd"', '"A\ d??ef 123!"',
      "\"this is\\\n a test\"", '"back\67round"', '"r\000065 ed"',
-     "'abcd'", "' A sd sedrcv \"dsf\" asd rf—&23$%#%$g asd'", "'A\\\n def 123!'",
+     "'abcd'", "' A sd sedrcv \"dsf\" asd rfÃ³&23$%#%$g asd'", "'A\\\n def 123!'",
      "'this is\\\n a test'", "'back\\67round'", "'r\\000065 ed'"     
     ].each do |str|
       assert_equal str, str.match(CssParser::RE_STRING).to_s

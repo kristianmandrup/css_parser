@@ -1,3 +1,5 @@
+require 'css_parser/selector'
+
 module CssParser
   class RuleSet
     # Patterns for specificity calculations
@@ -76,9 +78,9 @@ module CssParser
     def each_selector(options = {}) # :yields: selector, declarations, specificity
       declarations = declarations_to_s(options)
       if @specificity
-        @selectors.each { |sel| yield sel.strip, declarations, @specificity }
+        @selectors.each { |sel| yield Selector.new sel.strip, declarations, @specificity }
       else
-        @selectors.each { |sel| yield sel.strip, declarations, CssParser.calculate_specificity(sel) }
+        @selectors.each { |sel| yield Selector.new sel.strip, declarations, CssParser.calculate_specificity(sel) }
       end
     end
 

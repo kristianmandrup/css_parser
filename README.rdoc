@@ -31,7 +31,11 @@ Done.
   parser.find('#content', [:screen, :handheld])
 
   # iterate through selectors by media type
-  parser.each_selector(:screen) do |selector, declarations, specificity|
+  parser.each_selector(:screen) do |sel|
+    puts sel
+    puts sel.selector
+    puts sel.declarations
+    puts sel.specificity
     ...
   end
   

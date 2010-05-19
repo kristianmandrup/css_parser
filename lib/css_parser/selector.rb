@@ -8,8 +8,10 @@ module CssParser
     
     def initialize(selector, declarations, specificity)
       @selector = selector
-      @order = 0                 
-      @declarations = parse_declarations!(declarations)
+      @order = 0     
+      @declarations = {}
+      parse_declarations!(declarations)
+      puts "intial declarations: #{@declarations}"
       @specificity = specificity 
     end
 

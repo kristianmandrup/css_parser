@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{css_parser}
-  s.version = "1.2.2"
+  s.version = "1.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-05-19}
+  s.date = %q{2010-05-20}
   s.description = %q{Lets you parse a CSS file and operate on selectors and calculate specificity etc.}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -50,6 +50,7 @@ Gem::Specification.new do |s|
      "test/test_rule_set.rb",
      "test/test_rule_set_creating_shorthand.rb",
      "test/test_rule_set_expanding_shorthand.rb",
+     "test/test_ruleset_expand.rb",
      "test/test_selector.rb",
      "test/test_selector_parsing.rb"
   ]
@@ -70,6 +71,7 @@ Gem::Specification.new do |s|
      "test/test_rule_set.rb",
      "test/test_rule_set_creating_shorthand.rb",
      "test/test_rule_set_expanding_shorthand.rb",
+     "test/test_ruleset_expand.rb",
      "test/test_selector.rb",
      "test/test_selector_parsing.rb"
   ]

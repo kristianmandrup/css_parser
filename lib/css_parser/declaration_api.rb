@@ -45,7 +45,7 @@ module CssParser
      str = ''
      importance = options[:force_important] # ? ' !important' : ''
      self.each_declaration do |decl| 
-       str += "#{decl.to_text(importance)}" 
+       str += "#{decl.to_s(importance)}" # to_text
      end                     
      str.gsub(/^[\s]+|[\n\r\f\t]*|[\s]+$/mx, '').strip
     end

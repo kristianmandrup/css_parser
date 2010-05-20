@@ -58,7 +58,7 @@ class CssParserBasicTests < Test::Unit::TestCase
     @cp.selector_declarations do |sel, decl|
       # puts "sel: #{sel.inspect}"  
       puts "sel: #{sel.to_s}"
-      puts "decl: #{decl.inspect}"      
+      puts "decl: #{decl[1].to_s}"      
     end    
     # assert_equal(expected, actual)
   end

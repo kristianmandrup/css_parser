@@ -44,6 +44,7 @@ class RuleSetTests < Test::Unit::TestCase
     assert_equal(expected, actual)
   end
 
+
   def test_each_declaration
     expected = Set.new([
        {:property => 'margin', :value => '1px -0.25em', :is_important => false},

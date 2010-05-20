@@ -26,7 +26,7 @@ module CssParser
 
     
     def to_s
-      "#{selector}\n{\n#{declarations}\n} \n"
+      "#{selector}\n{\n#{declarations_to_s}\n} \n"
     end
 
   end

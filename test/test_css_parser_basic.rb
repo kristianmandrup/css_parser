@@ -21,11 +21,22 @@ class CssParserBasicTests < Test::Unit::TestCase
 
   def test_adding_block
     @cp.add_block!(@css)
+    # @cp.selector_declarations do |sel, decl|
+    #   puts "sel: #{sel.inspect}"
+    #   puts "decl: #{decl.inspect}"      
+    # end        
+    
     assert_equal 'margin: 0px;', @cp.find_by_selector('body').join
   end
 
   def test_adding_a_rule
     @cp.add_rule!('div', 'color: blue;')
+
+    # @cp.selector_declarations do |sel, decl|
+    #   puts "sel: #{sel.inspect}"
+    #   puts "decl: #{decl.inspect}"      
+    # end    
+    
     assert_equal 'color: blue;', @cp.find_by_selector('div').join(' ')
   end
 
@@ -34,6 +45,24 @@ class CssParserBasicTests < Test::Unit::TestCase
     @cp.add_rule_set!(rs)
     assert_equal 'color: blue;', @cp.find_by_selector('div').join(' ')
   end
+
+  def test_selector_declarations
+    expected = [
+       {:selector => "#content p", :declarations => "color: #fff;", :specificity => 101},
+       {:selector => "a", :declarations => "color: #fff;", :specificity => 1}
+    ]
+    
+    actual = []
+    rs = RuleSet.new('#content p, a', 'color: #fff;')
+    @cp.add_rule_set!(rs)    
+    @cp.selector_declarations do |sel, decl|
+      # puts "sel: #{sel.inspect}"  
+      puts "sel: #{sel.to_s}"
+      puts "decl: #{decl.inspect}"      
+    end    
+    # assert_equal(expected, actual)
+  end
+
 
   def test_toggling_uri_conversion
     # with conversion

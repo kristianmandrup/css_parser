@@ -1,10 +1,5 @@
 module CssParser
   module DeclarationAPI
-    def each_declaration # :yields: property, value, is_important      
-      @declarations.each do |d|
-        yield d
-      end
-    end      
 
     # def each_declaration # :yields: property, value, is_important      
     #   decs = @declarations.sort { |a,b| a[1][:order].nil? || b[1][:order].nil? ? 0 : a[1][:order] <=> b[1][:order] }
@@ -18,6 +13,16 @@ module CssParser
     #   end
     # end
 
+    def each_declaration # :yields: property, value, is_important      
+      # puts "@declarations: #{@declarations.inspect}"
+      decs = @declarations.sort { |a,b| a.order <=> b.order }
+      # puts "decs: #{decs.inspect}"
+      decs.each do |decl|
+        yield decl[1]
+      end
+    end
+
+
     # Return all declarations as a string.
     #--
     # TODO: Clean-up regexp doesn't seem to work
@@ -26,7 +31,10 @@ module CssParser
      options = {:force_important => false}.merge(options)
      str = ''
      importance = options[:force_important] # ? ' !important' : ''
-     self.each_declaration { |decl| str += "#{decl.to_s(importance)}" }
+     self.each_declaration do |decl| 
+       # puts "decl: #{decl.inspect}"
+       str += "#{decl.to_text(importance)}" 
+     end
      str.gsub(/^[\s]+|[\n\r\f\t]*|[\s]+$/mx, '').strip
     end
 
@@ -44,9 +52,7 @@ module CssParser
     #  => '0px auto !important;'
     #
     # If the property already exists its value will be over-written.
-    def add_declaration!(property, value) 
-      puts "add_declaration! #{property} #{value}"
-       
+    def add_declaration!(property, value)        
       if value.nil? or value.empty?
         @declarations.delete(property)
         return
@@ -55,17 +61,15 @@ module CssParser
       value.gsub!(/;\Z/, '')
       is_important = !value.gsub!(CssParser::IMPORTANT_IN_PROPERTY_RX, '').nil?
       property = property.downcase.strip
-      
-      puts "property: #{property} value: #{value} #{@order}"
-      @declarations[property] = {
-        :value => value.strip, :is_important => is_important, :order => @order += 1
-      } 
-      puts "added : #{@declarations}"
+                                
+      decl = CssParser::Declaration.new property.downcase.strip, value.strip, is_important, @order += 1
+      # puts "new decl: #{decl.inspect}, #{decl.class}"
+      @declarations[property] = decl 
     end
     alias_method :[]=, :add_declaration!
 
     def parse_declarations!(block) # :nodoc: 
-      @declarations = {}  
+      @declarations ||= {}  
 
       return unless block
 
@@ -77,8 +81,7 @@ module CssParser
         if matches = decs.match(/(.[^:]*)\:(.[^;]*)(;|\Z)/i)              
           property, value, end_of_declaration = matches.captures
 
-
-          puts "parse - property: #{property} , value: #{value}"
+          # puts "parse - property: #{property} , value: #{value}"
           add_declaration!(property, value)          
         end
       end

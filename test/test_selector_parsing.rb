@@ -21,7 +21,6 @@ class CssSelectorParserTests < Test::Unit::TestCase
       puts decl.inspect
     end 
 
-
     selector = CssParser::Selector.new('table', 'margin: 0px; padding: 0px;', 9999)    
     puts selector.inspect
   end

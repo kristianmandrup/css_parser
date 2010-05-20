@@ -53,7 +53,8 @@ module CssParser
     #     ...
     #   end
     def each_selector(options = {}) # :yields: selector, declarations, specificity
-      declarations = declarations_to_s(options)
+      declarations = declarations_to_s(options)  
+      # puts "declarations: #{declarations.inspect}" 
       if @specificity
         @selectors.each { |sel| yield Selector.new sel.strip, declarations, @specificity }
       else

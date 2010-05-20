@@ -10,13 +10,18 @@ module CssParser
       @selector = selector
       @order = 0     
       @declarations = {}
-      parse_declarations!(declarations)
-      puts "intial declarations: #{@declarations}"
+      parse_declarations!(declarations)  
+      # puts "init @declarations: #{@declarations}"
       @specificity = specificity 
     end
 
     def declarations_to_s(options = {})
-      declarations.map{|decl| decl + ';'}.join('')
+      # puts "declarations_to_s: #{declarations.inspect}"
+      s = declarations.map do |decl| 
+        decl[1].to_text
+      end.join('')
+      # puts "res: #{s}"
+      s
     end
 
     

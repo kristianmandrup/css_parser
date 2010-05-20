@@ -73,8 +73,8 @@ module CssParser
     def find_by_selector(selector, media_types = :all)
       out = []
       each_selector(media_types) do |sel|
-        sel.declarations[0] += ";"
-        out << sel.declarations if sel.selector.strip == selector.strip
+        # puts "selector declaration: #{sel.declarations_to_s}"
+        out << sel.declarations_to_s if sel.selector.strip == selector.strip
       end
       out
     end
@@ -196,6 +196,7 @@ module CssParser
       each_rule_set(media_types) do |rule_set|
         #puts rule_set
         rule_set.each_selector(options) do |selector|
+          # puts "selector: #{selector.inspect}"
           yield selector
         end
       end

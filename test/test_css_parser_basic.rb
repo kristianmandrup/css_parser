@@ -57,8 +57,8 @@ class CssParserBasicTests < Test::Unit::TestCase
     @cp.add_rule_set!(rs)    
     @cp.selector_declarations do |sel, decl|
       # puts "sel: #{sel.inspect}"  
-      puts "sel: #{sel.to_s}"
-      puts "decl: #{decl[1].to_s}"      
+      puts "sel: #{sel.to_text}"
+      puts "decl: #{decl[1].to_text}"      
     end    
     # assert_equal(expected, actual)
   end

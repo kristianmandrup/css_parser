@@ -18,14 +18,14 @@ module CssParser
     def declarations_to_s(options = {})
       # puts "declarations_to_s: #{declarations.inspect}"
       s = declarations.map do |decl| 
-        decl[1].to_s #text
+        decl[1].to_text
       end.join('')
       # puts "res: #{s}"
       s
     end
 
     
-    def to_s
+    def to_text
       "#{selector}\n{\n#{declarations_to_s}\n} \n"
     end
 

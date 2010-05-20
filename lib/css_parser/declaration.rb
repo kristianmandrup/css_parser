@@ -23,7 +23,7 @@ module CssParser
       end
     end        
     
-    def to_s(importance = nil)
+    def to_text(importance = nil)
       "#{property}: #{value}#{ ' !important' if important || importance};"
     end
       

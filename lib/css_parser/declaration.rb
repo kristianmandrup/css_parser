@@ -9,6 +9,19 @@ module CssParser
       @important = important
       @order = order            
     end
+
+    def [] index
+      case index
+      when :value
+        value
+      when :order
+        order
+      when :is_important
+        important
+      when :property
+        property
+      end
+    end        
     
     def to_text(importance = nil)
       "#{property}: #{value}#{ ' !important' if important || importance};"

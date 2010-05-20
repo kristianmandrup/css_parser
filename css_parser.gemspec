@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{css_parser}
-  s.version = "1.2.1"
+  s.version = "1.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -50,6 +50,7 @@ Gem::Specification.new do |s|
      "test/test_rule_set.rb",
      "test/test_rule_set_creating_shorthand.rb",
      "test/test_rule_set_expanding_shorthand.rb",
+     "test/test_selector.rb",
      "test/test_selector_parsing.rb"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/load-me}
@@ -69,6 +70,7 @@ Gem::Specification.new do |s|
      "test/test_rule_set.rb",
      "test/test_rule_set_creating_shorthand.rb",
      "test/test_rule_set_expanding_shorthand.rb",
+     "test/test_selector.rb",
      "test/test_selector_parsing.rb"
   ]
 

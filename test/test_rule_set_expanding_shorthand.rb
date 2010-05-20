@@ -173,7 +173,7 @@ protected
     # ruleset.each_declaration do |prop, val, imp|
     ruleset.each_declaration do |decl|
       collected[decl.property.to_s] = decl.value.to_s
-    end
+    end       
     collected  
   end
 end

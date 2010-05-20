@@ -13,9 +13,22 @@ module CssParser
     #   end
     # end
 
+    def ensure_valid_declarations! 
+      @declarations.each do |d|
+        name = d[0]
+        prop = d[1]
+        if prop.kind_of? Hash
+          value = prop[:value]
+          important = prop[:is_important]
+          @declarations[d[0]] = Declaration.new(name, value, important, @order += 1)
+        end
+      end
+    end
+          
+
     def each_declaration # :yields: property, value, is_important      
-      # puts "@declarations: #{@declarations.inspect}"
-      decs = @declarations.sort { |a,b| a.order <=> b.order }
+      ensure_valid_declarations!       
+      decs = @declarations.sort { |a,b| a[1].order <=> b[1].order }
       # puts "decs: #{decs.inspect}"
       decs.each do |decl|
         yield decl[1]
@@ -32,9 +45,8 @@ module CssParser
      str = ''
      importance = options[:force_important] # ? ' !important' : ''
      self.each_declaration do |decl| 
-       # puts "decl: #{decl.inspect}"
        str += "#{decl.to_text(importance)}" 
-     end
+     end                     
      str.gsub(/^[\s]+|[\n\r\f\t]*|[\s]+$/mx, '').strip
     end
 

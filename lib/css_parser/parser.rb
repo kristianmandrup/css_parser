@@ -176,14 +176,7 @@ module CssParser
     def selector_declarations(&block)
       each_selector_sorted(:all, :order => :asc) do |sel|        
         sel.declarations.each do |dec|
-          dec.gsub! /"/, ''
-          dec.gsub! /\[/, ''
-          dec.gsub! /\]/, ''
-
-          decs = dec.split(',')
-          decs.each do |d| 
-            yield sel, d              
-          end      
+          yield sel, dec              
         end
       end             
     end
